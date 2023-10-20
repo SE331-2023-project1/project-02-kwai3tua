@@ -1,6 +1,7 @@
 package project02.rest.dao;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import project02.rest.event.Student;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@Profile("manual")
 public class StudentDaolmpl implements StudentDao {
     List<Student> studentList;
 
