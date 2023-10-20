@@ -15,33 +15,6 @@ import java.util.List;
 @Profile("manual")
 public class StudentDaolmpl implements StudentDao {
     List<Student> studentList;
-
-    @PostConstruct
-    public void init(){
-        studentList = new ArrayList<>();
-        studentList.add(Student.builder()
-                .studentId(642115038L)
-                .name("Yotsawat")
-                .surname("Lekwongthanasin")
-                .profileImg("Img link here or anything can show img")
-                .department("SE")
-                .build());
-        studentList.add(Student.builder()
-                .studentId(642115008L)
-                .name("Jirapat")
-                .surname("Namwong")
-                .profileImg("Img link here or anything can show img")
-                .department("SE")
-                .build());
-        studentList.add(Student.builder()
-                .studentId(642115032L)
-                .name("Putthipong")
-                .surname("Nilwong")
-                .profileImg("Img link here or anything can show img")
-                .department("SE")
-                .build());
-    }
-
     @Override
     public Integer getStudentSize(){
         return studentList.size();
