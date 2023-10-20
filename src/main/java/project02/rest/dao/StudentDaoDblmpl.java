@@ -2,6 +2,8 @@ package project02.rest.dao;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import project02.rest.event.Student;
 import project02.rest.repository.StudentRepository;
@@ -20,13 +22,8 @@ public class StudentDaoDblmpl implements StudentDao {
     }
 
     @Override
-    public List<Student> getStudents(Integer pageSize, Integer page) {
-        List<Student> students = studentRepository.findAll();
-           pageSize = pageSize == null ? students.size() : pageSize;
-           page = page == null ? 1 : page;
-           int firstIndex = (page - 1) * pageSize;
-           List<Student> output = students.subList(firstIndex, firstIndex + pageSize);
-           return output;
+    public Page<Student> getStudents(Integer pageSize, Integer page) {
+        return studentRepository.findAll(PageRequest.of(page - 1, pageSize));
     }
 
     @Override

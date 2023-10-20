@@ -1,6 +1,7 @@
 package project02.rest.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import project02.rest.dao.StudentDao;
 import project02.rest.event.Student;
@@ -18,7 +19,7 @@ public class StudentServicelmpl implements StudentService {
     }
 
     @Override
-    public List<Student> getStudents(Integer pageSize, Integer page) {
+    public Page<Student> getStudents(Integer pageSize, Integer page) {
         return studentDao.getStudents(pageSize,page);
     }
 

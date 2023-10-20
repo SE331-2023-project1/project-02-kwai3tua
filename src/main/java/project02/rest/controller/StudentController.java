@@ -2,6 +2,7 @@ package project02.rest.controller;
 
 import jdk.jfr.Event;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,19 +28,12 @@ public class StudentController {
     @GetMapping("students")
     public ResponseEntity<?> getStudentLists(@RequestParam(value = "_limit",required = false)Integer perPage,
                                              @RequestParam(value = "_page",required = false)Integer page){
-        List<Student> output = null;
-        Integer studentSize = studentService.getStudentSize();
+        Page<Student> pageOutput = studentService.getStudents(perPage, page);
         HttpHeaders responseHeader = new HttpHeaders();
-        responseHeader.set("x-total-count",String.valueOf(studentSize));
+        responseHeader.set("x-total-count",String.valueOf(pageOutput.getTotalElements()));
         // indexOutOfBoundException
-        try{
-            output = studentService.getStudents(perPage, page);
             return new
-                    ResponseEntity<>(output,responseHeader,HttpStatus.OK);
-        }catch (IndexOutOfBoundsException ex) {
-            return new
-                    ResponseEntity<>(output,responseHeader,HttpStatus.OK);
-        }
+                    ResponseEntity<>(pageOutput.getContent(),responseHeader,HttpStatus.OK);
     }
 
     @GetMapping("students/{id}")

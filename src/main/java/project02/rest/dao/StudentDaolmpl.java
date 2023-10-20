@@ -2,6 +2,9 @@ package project02.rest.dao;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import project02.rest.event.Student;
 
@@ -45,15 +48,11 @@ public class StudentDaolmpl implements StudentDao {
     }
 
     @Override
-    public List<Student> getStudents(Integer pageSize, Integer page) {
+    public Page<Student> getStudents(Integer pageSize, Integer page) {
         pageSize = pageSize == null ? studentList.size() : pageSize;
         page = page == null ? 1 : page;
-        Integer firstIndex = (page - 1) * pageSize;
-        List<Student> output = new ArrayList<>();
-        for (int i = firstIndex; i < firstIndex + pageSize; i++) {
-            output.add(studentList.get(i));
-        }
-        return output;
+        int firstIndex = (page - 1) * pageSize;
+        return new PageImpl<Student>(studentList.subList(firstIndex,firstIndex+pageSize), PageRequest.of(page,pageSize),studentList.size());
     }
 
     @Override
