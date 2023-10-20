@@ -60,4 +60,11 @@ public class StudentDaolmpl implements StudentDao {
         return studentList.stream().filter(student ->
                 student.getStudentId().equals(studentId)).findFirst().orElse(null);
     }
+
+    @Override
+    public Student save(Student student) {
+        student.setStudentId(studentList.get(studentList.size()-1).getStudentId()+1);
+        studentList.add(student);
+        return student;
+    }
 }

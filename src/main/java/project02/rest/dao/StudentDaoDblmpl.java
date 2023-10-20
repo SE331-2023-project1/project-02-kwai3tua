@@ -30,4 +30,9 @@ public class StudentDaoDblmpl implements StudentDao {
     public Student getStudent(Long studentId) {
         return studentRepository.findById(studentId).orElse(null);
     }
+
+    @Override
+    public Student save(Student student) {
+        return studentRepository.save(student);
+    }
 }

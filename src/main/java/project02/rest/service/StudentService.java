@@ -9,4 +9,5 @@ public interface StudentService {
     Integer getStudentSize();
     Page<Student> getStudents(Integer pageSize, Integer page);
     Student getStudent(Long studentId);
+    Student save(Student student);
 }

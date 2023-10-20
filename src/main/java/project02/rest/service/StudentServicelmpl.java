@@ -27,4 +27,9 @@ public class StudentServicelmpl implements StudentService {
     public Student getStudent(Long studentId) {
         return studentDao.getStudent(studentId);
     }
+
+    @Override
+    public Student save(Student student) {
+        return studentDao.save(student);
+    }
 }
