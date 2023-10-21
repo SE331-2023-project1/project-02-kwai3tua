@@ -1,4 +1,4 @@
-package project02.rest.event;
+package project02.rest.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

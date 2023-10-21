@@ -1,6 +1,6 @@
 package project02.rest.dao;
 
-import project02.rest.event.Student;
+import project02.rest.entity.Student;
 import org.springframework.data.domain.Page;
 
 public interface StudentDao {

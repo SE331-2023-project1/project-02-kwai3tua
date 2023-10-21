@@ -5,10 +5,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
-import project02.rest.event.Student;
+import project02.rest.entity.Student;
 import project02.rest.repository.StudentRepository;
-
-import java.util.List;
 
 @Repository
 @RequiredArgsConstructor

@@ -1,7 +1,7 @@
 package project02.rest.service;
 
 import org.springframework.data.domain.Page;
-import project02.rest.event.Teacher;
+import project02.rest.entity.Teacher;
 
 public interface TeacherService {
     Integer getTeacherSize();

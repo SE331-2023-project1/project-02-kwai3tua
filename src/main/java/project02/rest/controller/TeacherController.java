@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import project02.rest.event.Teacher;
+import project02.rest.entity.Teacher;
 import project02.rest.service.TeacherService;
 
 @Controller

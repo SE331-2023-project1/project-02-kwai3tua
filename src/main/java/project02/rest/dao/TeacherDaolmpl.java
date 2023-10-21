@@ -6,8 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
-import project02.rest.event.Student;
-import project02.rest.event.Teacher;
+import project02.rest.entity.Teacher;
 
 import java.util.List;
 

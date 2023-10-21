@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
-import project02.rest.event.Teacher;
+import project02.rest.entity.Teacher;
 import project02.rest.repository.TeacherRepository;
 
 @Repository

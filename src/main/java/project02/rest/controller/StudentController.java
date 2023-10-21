@@ -1,22 +1,16 @@
 package project02.rest.controller;
 
-import jdk.jfr.Event;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Indexed;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import project02.rest.event.Student;
+import project02.rest.entity.Student;
 
-import  jakarta.annotation.PostConstruct;
 import project02.rest.service.StudentService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor

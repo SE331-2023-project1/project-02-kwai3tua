@@ -1,9 +1,7 @@
 package project02.rest.service;
 
 import org.springframework.data.domain.Page;
-import project02.rest.event.Student;
-
-import java.util.List;
+import project02.rest.entity.Student;
 
 public interface StudentService {
     Integer getStudentSize();

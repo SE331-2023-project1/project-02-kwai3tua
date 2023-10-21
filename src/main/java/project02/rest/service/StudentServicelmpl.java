@@ -4,9 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import project02.rest.dao.StudentDao;
-import project02.rest.event.Student;
-
-import java.util.List;
+import project02.rest.entity.Student;
 
 @Service
 @RequiredArgsConstructor
