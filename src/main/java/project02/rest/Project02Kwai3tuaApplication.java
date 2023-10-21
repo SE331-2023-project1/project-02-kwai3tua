@@ -20,7 +20,7 @@ public class Project02Kwai3tuaApplication {
 			@Override
 			public void addCorsMappings (CorsRegistry registry){
 				registry.addMapping("/**")
-						.allowedOrigins("http://locahost:3000")
+						.allowedOrigins("http://localhost:3000")
 						.exposedHeaders("x-total-count"); //expose x-total-count
 			}
 		};

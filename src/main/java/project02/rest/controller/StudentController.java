@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import project02.rest.entity.Student;
 
 import project02.rest.service.StudentService;
+import project02.rest.util.ProjectMapper;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,14 +26,15 @@ public class StudentController {
         responseHeader.set("x-total-count",String.valueOf(pageOutput.getTotalElements()));
         // indexOutOfBoundException
             return new
-                    ResponseEntity<>(pageOutput.getContent(),responseHeader,HttpStatus.OK);
+                    ResponseEntity<>(ProjectMapper.INSTANCE.getStudentDto(pageOutput.getContent())
+                    ,responseHeader,HttpStatus.OK);
     }
 
     @GetMapping("students/{id}")
     public ResponseEntity<?> getStudent(@PathVariable("id") Long studentId) {
         Student output = studentService.getStudent(studentId);
         if (output != null) {
-            return ResponseEntity.ok(output);
+            return ResponseEntity.ok(ProjectMapper.INSTANCE.getStudentDto(output));
         }else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given id is not found");
         }
@@ -41,7 +43,7 @@ public class StudentController {
     @PostMapping("/students")
     public ResponseEntity<?> addStudent (@RequestBody Student student){
         Student output = studentService.save(student);
-        return ResponseEntity.ok(output);
+        return ResponseEntity.ok(ProjectMapper.INSTANCE.getStudentDto(output));
     }
 }
 

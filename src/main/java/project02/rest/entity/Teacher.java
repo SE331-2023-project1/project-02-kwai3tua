@@ -1,10 +1,10 @@
 package project02.rest.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
@@ -23,5 +23,7 @@ public class Teacher {
     String department;
     String username;
     String password;
-    String advisee;
+    @OneToMany(mappedBy = "advisor")
+    @Builder.Default
+    List<Student> advisee = new ArrayList<>();
 }
