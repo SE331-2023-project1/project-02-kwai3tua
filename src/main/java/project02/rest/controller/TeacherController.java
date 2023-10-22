@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import project02.rest.entity.Teacher;
 import project02.rest.service.TeacherService;
+import project02.rest.util.ProjectMapper;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,17 +28,17 @@ public class TeacherController {
     }
 
     @GetMapping("teachers/{id}")
-    public ResponseEntity<?> getStudent(@PathVariable("id") Long Id) {
+    public ResponseEntity<?> getTeacher(@PathVariable("id") Long Id) {
         Teacher output = teacherService.getTeacher(Id);
         if (output != null) {
-            return ResponseEntity.ok(output);
+            return ResponseEntity.ok(ProjectMapper.INSTANCE.getTeacherDTO(output));
         }else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given id is not found");
         }
     }
 
     @PostMapping("/teachers")
-    public ResponseEntity<?> addStudent (@RequestBody Teacher teacher){
+    public ResponseEntity<?> addTeacher (@RequestBody Teacher teacher){
         Teacher output = teacherService.save(teacher);
         return ResponseEntity.ok(output);
     }
