@@ -139,8 +139,8 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         userRepository.save(userS5);
 
         User userS6 = new User();
-        userS6.setUsername("Putthipong");
-        userS6.setFirstname("Singkumfu");
+        userS6.setUsername("student6");
+        userS6.setFirstname("Putthipong");
         userS6.setLastname("Ninwong");
         userS6.setPassword(encoder.encode("753951"));
         userS6.setEmail("student6@hotmail.co.th");
