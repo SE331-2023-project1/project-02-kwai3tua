@@ -1,19 +1,21 @@
 package project02.rest.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import project02.rest.entity.Student;
 
 import project02.rest.repository.StudentRepository;
+import project02.rest.security.user.User;
+import project02.rest.security.user.UserRepository;
+import project02.rest.security.user.UserService;
 import project02.rest.service.StudentService;
-import project02.rest.util.ProjectMapper;
+import project02.rest.util.LabMapper;
 
 import java.util.List;
 
@@ -22,34 +24,51 @@ import java.util.List;
 public class StudentController {
     final StudentService studentService;
     final StudentRepository studentRepository;
+    final UserRepository userRepository;
+    final UserService userService;
 //    Path of website
+
+    @GetMapping("/users")
+    public ResponseEntity<?> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return ResponseEntity.ok(LabMapper.INSTANCE.getUserDTO(users));
+    }
+
     @GetMapping("students")
-    public ResponseEntity<?> getStudentLists(@RequestParam(value = "_limit",required = false)Integer perPage,
-                                             @RequestParam(value = "_page",required = false)Integer page,
-                                             @RequestParam(value = "firstname", required = false) String firstname){
+    public ResponseEntity<?> getAllStudents(@RequestParam(value = "_limit", required = false) Integer perPage,
+                                            @RequestParam(value = "_page", required = false) Integer page,
+                                            @RequestParam(value = "_filter", required = false) String filter) {
         perPage = perPage == null ? 20 : perPage;
         page = page == null ? 1 : page;
         List<Student> pageOutput;
 
         pageOutput = studentRepository.findAll();
 
-        return ResponseEntity.ok(ProjectMapper.INSTANCE.getStudentDto(pageOutput));
+        return ResponseEntity.ok(LabMapper.INSTANCE.getStudentDTO(pageOutput));
+
     }
 
     @GetMapping("students/{id}")
     public ResponseEntity<?> getStudent(@PathVariable("id") Long id) {
-        Student output = studentService.getStudent(id);
-        if (output != null) {
-            return ResponseEntity.ok(ProjectMapper.INSTANCE.getStudentDto(output));
+        Student studentopt = studentService.getStudent(id);
+        if (studentopt != null) {
+            return ResponseEntity.ok(LabMapper.INSTANCE.getStudentDTO(studentopt));
         }else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given id is not found");
         }
     }
 
-    @PostMapping("/students")
-    public ResponseEntity<?> addStudent (@RequestBody Student student){
-        Student output = studentService.save(student);
-        return ResponseEntity.ok(ProjectMapper.INSTANCE.getStudentDto(output));
+    //To Update Student
+    @PutMapping(value = "/students/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> updateStudent(@PathVariable("id") Long id,
+                                           @ModelAttribute User user,
+                                           @RequestPart("images") MultipartFile imageFile) {
+        User output = studentService.updateStudent(id, user, imageFile);
+        if (output != null) {
+            return ResponseEntity.ok(LabMapper.INSTANCE.getUserDTO(output));
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given id is not found");
+        }
     }
 }
 

@@ -20,9 +20,9 @@ public class Teacher {
     @ElementCollection
     List<String> profileImg;
     String department;
-    @OneToMany(mappedBy = "advisor") //advisor = teacher
+    @OneToMany(mappedBy = "teacher") //advisor = teacher
     @Builder.Default
-    List<Student> advisee = new ArrayList<>(); //Own Student
+    List<Student> ownStudent = new ArrayList<>(); //Own Student
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;

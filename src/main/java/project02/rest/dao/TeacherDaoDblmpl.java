@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 import project02.rest.entity.Teacher;
@@ -33,6 +34,11 @@ public class TeacherDaoDblmpl implements TeacherDao {
     @Override
     public Page<Teacher> getTeachers(Integer pageSize, Integer page) {
         return teacherRepository.findAll(PageRequest.of(page - 1, pageSize));
+    }
+
+    @Override
+    public Page<Teacher> getTeachers(String filter, Pageable page) {
+        return teacherRepository.findByUser_FirstnameOrUser_LastnameOrUser_Username(filter,filter,filter, page);
     }
 
     @Override

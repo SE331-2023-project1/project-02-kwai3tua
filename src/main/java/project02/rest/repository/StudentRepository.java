@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface StudentRepository extends JpaRepository<Student,Long> {
     List<Student> findAll();
-    Page<Student> findByUser_Firstname(String firstname, Pageable pageRequest);
+    Page<Student> findByUser_FirstnameOrUser_LastnameOrUser_Username(String firstname, String lastname, String username, Pageable pageRequest);
 }
 

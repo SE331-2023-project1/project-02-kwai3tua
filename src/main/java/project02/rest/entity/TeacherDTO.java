@@ -16,5 +16,5 @@ public class TeacherDTO {
     Long Id;
     List<String> images;
     String department;
-    List<TeacherStudentDTO> ownStudent = new ArrayList<>();
+    List<TeacherOwnStudentDTO> ownStudent = new ArrayList<>();
 }

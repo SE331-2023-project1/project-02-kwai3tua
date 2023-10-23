@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import project02.rest.dao.StudentDao;
 import project02.rest.entity.Student;
+import project02.rest.security.user.User;
 
 @Service
 @RequiredArgsConstructor
@@ -35,5 +37,10 @@ public class StudentServicelmpl implements StudentService {
     @Override
     public Student save(Student student) {
         return studentDao.save(student);
+    }
+
+    @Override
+    public User updateStudent(Long id, User user, MultipartFile image) {
+        return studentDao.updateStudent(id, user, image);
     }
 }

@@ -3,8 +3,10 @@ package project02.rest.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import project02.rest.dao.TeacherDao;
 import project02.rest.entity.Teacher;
+import project02.rest.security.user.User;
 
 @Service
 @RequiredArgsConstructor
@@ -28,5 +30,10 @@ public class TeacherServicelmpl implements TeacherService{
     @Override
     public Teacher save(Teacher teacher) {
         return teacherDao.save(teacher);
+    }
+
+    @Override
+    public User updateTeacher(Long id, User user, MultipartFile imageFile) {
+        return teacherDao.updateTeacher(id, user, imageFile);
     }
 }

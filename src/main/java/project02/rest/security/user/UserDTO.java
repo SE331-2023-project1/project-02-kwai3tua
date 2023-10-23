@@ -1,6 +1,5 @@
-package project02.rest.entity;
+package project02.rest.security.user;
 
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,10 +12,11 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeacherStudentDTO {
+public class UserDTO {
     Long id;
+    String username;
     String firstname;
     String lastname;
-    String image;
     String email;
+    List<Role> roles = new ArrayList<>();
 }

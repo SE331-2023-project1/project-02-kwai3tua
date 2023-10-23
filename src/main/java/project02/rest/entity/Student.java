@@ -16,13 +16,15 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     Long id;
-    Long studentId;
     @ElementCollection
     List<String> profileImg;
     String department;
     @ManyToOne
-    Teacher advisor;
+    Teacher teacher;
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "student")
+    List<Comment> comments;
 }

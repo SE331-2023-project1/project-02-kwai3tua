@@ -10,6 +10,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import project02.rest.entity.Student;
 import project02.rest.security.token.Token;
 
 import java.util.ArrayList;
@@ -50,6 +51,8 @@ public class User implements UserDetails {
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return roles.stream().map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toList());
   }
+  @OneToOne(mappedBy = "user")
+  Student student;
 
   @Override
   public String getPassword() {
