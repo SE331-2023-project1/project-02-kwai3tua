@@ -15,10 +15,8 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
-    Long Id;
+    Long id;
     Long studentId;
-    String firstname;
-    String lastname;
     @ElementCollection
     List<String> profileImg;
     String department;

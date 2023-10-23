@@ -172,6 +172,11 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
 
         Student s1 = new Student();
         s1.setUser(userS1);
+        studentRepository.save(s1);
+
+        Teacher t2 = new Teacher();
+        t2.setUser(userT2);
+        teacherRepository.save(t2);
 
 
         Teacher t1 = new Teacher();
@@ -181,47 +186,73 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         teacherRepository.save(t1);
         studentRepository.save(s1);
 
+        Student s2 = new Student();
+        s2.setUser(userS2);
+        s2.setAdvisor(t1);
+        studentRepository.save(s2);
+        t1.getAdvisee().add(s2);
+        teacherRepository.save(t1);
 
-//        Student s2 = new Student();
-//        s1.setUser(userS2);
-//        s1.setAdvisor(t1);
-//        studentRepository.save(s2);
-//        Student s3 = new Student();
-//        s1.setUser(userS3);
-//        s1.setAdvisor(t1);
-//        studentRepository.save(s3);
-//        Student s4 = new Student();
-//        s1.setUser(userS4);
-//        s1.setAdvisor(t1);
-//        studentRepository.save(s4);
-//        Student s5 = new Student();
-//        s1.setUser(userS5);
-//        s1.setAdvisor(t1);
-//        studentRepository.save(s5);
-//
-//
-//        Teacher t2 = new Teacher();
-//        t2.setUser(userT2);
-//        teacherRepository.save(t2);
-//        Student s6 = new Student();
-//        s1.setUser(userS6);
-//        s1.setAdvisor(t2);
-//        studentRepository.save(s6);
-//        Student s7 = new Student();
-//        s1.setUser(userS7);
-//        s1.setAdvisor(t2);
-//        studentRepository.save(s7);
-//        Student s8 = new Student();
-//        s1.setUser(userS8);
-//        s1.setAdvisor(t2);
-//        studentRepository.save(s8);
-//        Student s9 = new Student();
-//        s1.setUser(userS9);
-//        s1.setAdvisor(t2);
-//        studentRepository.save(s9);
-//        Student s10 = new Student();
-//        s1.setUser(userS10);
-//        s1.setAdvisor(t2);
-//        studentRepository.save(s10);
+
+        Student s3 = new Student();
+        s3.setUser(userS3);
+        s3.setAdvisor(t1);
+        studentRepository.save(s3);
+        t1.getAdvisee().add(s3);
+        teacherRepository.save(t1);
+
+
+        Student s4 = new Student();
+        s4.setUser(userS4);
+        s4.setAdvisor(t1);
+        studentRepository.save(s4);
+        t1.getAdvisee().add(s4);
+        teacherRepository.save(t1);
+
+        Student s5 = new Student();
+        s5.setUser(userS5);
+        s5.setAdvisor(t1);
+        studentRepository.save(s5);
+        t1.getAdvisee().add(s5);
+        teacherRepository.save(t1);
+
+
+
+
+        Student s6 = new Student();
+        s6.setUser(userS6);
+        s6.setAdvisor(t2);
+        t2.getAdvisee().add(s6);
+        teacherRepository.save(t2);
+        studentRepository.save(s6);
+
+
+        Student s7 = new Student();
+        s7.setUser(userS7);
+        s7.setAdvisor(t2);
+        t2.getAdvisee().add(s7);
+        teacherRepository.save(t2);
+        studentRepository.save(s7);
+
+        Student s8 = new Student();
+        s8.setUser(userS8);
+        s8.setAdvisor(t2);
+        t2.getAdvisee().add(s8);
+        teacherRepository.save(t2);
+        studentRepository.save(s8);
+
+        Student s9 = new Student();
+        s9.setUser(userS9);
+        s9.setAdvisor(t2);
+        t2.getAdvisee().add(s9);
+        teacherRepository.save(t2);
+        studentRepository.save(s9);
+
+        Student s10 = new Student();
+        s10.setUser(userS10);
+        s10.setAdvisor(t2);
+        t2.getAdvisee().add(s10);
+        teacherRepository.save(t2);
+        studentRepository.save(s10);
     }
 }

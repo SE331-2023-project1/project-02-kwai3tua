@@ -5,8 +5,10 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 import project02.rest.entity.Student;
 import project02.rest.repository.StudentRepository;
+import project02.rest.security.user.User;
 
 @Repository
 @RequiredArgsConstructor
@@ -32,5 +34,10 @@ public class StudentDaoDblmpl implements StudentDao {
     @Override
     public Student save(Student student) {
         return studentRepository.save(student);
+    }
+
+    @Override
+    public User updateStudent(Long id, User updatedUser, MultipartFile imageFile) {
+        return null;
     }
 }

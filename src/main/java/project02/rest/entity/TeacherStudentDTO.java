@@ -14,12 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TeacherStudentDTO {
-    String name;
-    String surname;
-    String profileImg;
-    String position;
-    String department;
-    String username;
-    String password;
-    List<Student> advisee;
+    Long id;
+    String firstname;
+    String lastname;
+    String image;
+    String email;
 }

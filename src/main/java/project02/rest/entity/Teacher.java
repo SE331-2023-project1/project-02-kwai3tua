@@ -17,15 +17,12 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Exclude
     Long id;
-    String firstname;
-    String lastname;
     @ElementCollection
     List<String> profileImg;
-    String position;
     String department;
-    @OneToMany(mappedBy = "advisor")
+    @OneToMany(mappedBy = "advisor") //advisor = teacher
     @Builder.Default
-    List<Student> advisee = new ArrayList<>();
+    List<Student> advisee = new ArrayList<>(); //Own Student
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;

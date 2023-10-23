@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class TeacherDTO {
     Long Id;
-    String name;
+    List<String> images;
+    String department;
     List<TeacherStudentDTO> ownStudent = new ArrayList<>();
 }
