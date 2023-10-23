@@ -2,7 +2,6 @@ target
 *.iml
 *.ipr
 *.iws
-.idea
 .DS_Store
 .classpath
 .ekstazi
@@ -19,7 +18,6 @@ components/camel-solr/data
 .pmd
 .sts4-cache
 log-camel-lsp.out
-.vscode
 *.code-workspace
 components/camel-cxf/activemq-data
 *.swp
