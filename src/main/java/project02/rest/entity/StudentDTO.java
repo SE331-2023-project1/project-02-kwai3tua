@@ -6,15 +6,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentDTO {
     Long id;
-
     String firstname;
     String lastname;
-    String profileImg;
+    List<String> profileImg;
     String email;
 }
