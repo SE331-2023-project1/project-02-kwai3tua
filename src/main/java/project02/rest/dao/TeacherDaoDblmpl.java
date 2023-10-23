@@ -72,8 +72,8 @@ public class TeacherDaoDblmpl implements TeacherDao {
                     if (updatedUser.getPassword() != null) {
                         user.setPassword(updatedUser.getPassword());
                     }
-                    if (updatedUser.getProfileImg() != null) {
-                        user.setProfileImg(updatedUser.getProfileImg());
+                    if (updatedUser.getImage() != null) {
+                        user.setImage(updatedUser.getImage());
                     }
                     if (imageFile != null && !imageFile.isEmpty()) {
                         String imageUrl = null;
@@ -84,7 +84,7 @@ public class TeacherDaoDblmpl implements TeacherDao {
                         } catch (ServletException e) {
                             throw new RuntimeException(e);
                         }
-                        user.setProfileImg(imageUrl);
+                        user.setImage(imageUrl);
                     }
                     return userRepository.save(user);
                 })

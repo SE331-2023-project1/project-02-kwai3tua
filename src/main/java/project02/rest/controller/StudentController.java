@@ -33,6 +33,16 @@ public class StudentController {
         List<User> users = userRepository.findAll();
         return ResponseEntity.ok(LabMapper.INSTANCE.getUserDTO(users));
     }
+    @GetMapping("/users/{id}")
+    public ResponseEntity<?> getUser(@PathVariable("id") Long id) {
+        User user = userService.getUser(id);
+        if (user != null) {
+            return ResponseEntity.ok(LabMapper.INSTANCE.getUserDTO(user));
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+        }
+    }
+
 
     @GetMapping("students")
     public ResponseEntity<?> getAllStudents(@RequestParam(value = "_limit", required = false) Integer perPage,

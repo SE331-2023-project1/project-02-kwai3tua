@@ -28,43 +28,43 @@ public interface LabMapper {
     List<AnnouncementDTO> getAnnouncementDTO(List<Announcement> announcements);
 
 //    @Mapping(source = "user.id", target = "id")
-@Mapping(source = "user.username", target = "username")
-@Mapping(source = "user.firstname", target = "firstname")
-@Mapping(source = "user.lastname", target = "lastname")
-@Mapping(source = "user.email", target = "email")
-@Mapping(source = "user.roles", target = "roles")
-@Mapping(source = "user.image", target = "image")
-@Mapping(source = "ownStudent", target = "ownStudent")
+//@Mapping(source = "user.username", target = "username")
+//@Mapping(source = "user.firstname", target = "firstname")
+//@Mapping(source = "user.lastname", target = "lastname")
+//@Mapping(source = "user.email", target = "email")
+//@Mapping(source = "user.roles", target = "roles")
+//@Mapping(source = "user.image", target = "image")
+//@Mapping(source = "ownStudent", target = "ownStudent")
 DetailedTeacherDTO getDetailedTeacherDTO(Teacher teacher);
 
 
-    @Mapping(source = "user.firstname", target = "name")
-    @Mapping(source = "user.id", target = "id")
-    @Mapping(source = "user.lastname", target = "surname")
-    @Mapping(source = "user.image", target = "image")
-    @Mapping(source = "user.email", target = "email")
+//    @Mapping(source = "user.firstname", target = "name")
+//    @Mapping(source = "user.id", target = "id")
+//    @Mapping(source = "user.lastname", target = "surname")
+//    @Mapping(source = "user.image", target = "image")
+//    @Mapping(source = "user.email", target = "email")
     TeacherOwnStudentDTO getTeacherOwnStudentDTO(Student student);
 
-    @Mapping(source = "user.id", target = "id")
-    @Mapping(source = "user.username", target = "username")
-    @Mapping(source = "user.firstname", target = "firstname")
-    @Mapping(source = "user.lastname", target = "lastname")
-    @Mapping(source = "user.image", target = "image")
+//    @Mapping(source = "user.id", target = "id")
+//    @Mapping(source = "user.username", target = "username")
+//    @Mapping(source = "user.firstname", target = "firstname")
+//    @Mapping(source = "user.lastname", target = "lastname")
+//    @Mapping(source = "user.image", target = "image")
     TeacherBriefDTO getTeacherBriefDTO(Teacher teacher);
 
-    @Mapping(source = "teacher", target = "teacher")
-    @Mapping(source = "user.username", target = "username")
-    @Mapping(source = "user.firstname", target = "firstname")
-    @Mapping(source = "user.lastname", target = "lastname")
+//    @Mapping(source = "teacher", target = "teacher")
+//    @Mapping(source = "user.username", target = "username")
+//    @Mapping(source = "user.firstname", target = "firstname")
+//    @Mapping(source = "user.lastname", target = "lastname")
 //    @Mapping(source = "user.id", target = "id")
-    @Mapping(source = "user.image", target = "image")
-    @Mapping(source = "user.email", target = "email")
+//    @Mapping(source = "user.image", target = "image")
+//    @Mapping(source = "user.email", target = "email")
     StudentDTO getStudentDTO(Student student);
 
     AnnouncementDTO getAnnouncementDTO(Announcement announcement);
 
-    @Mapping(source = "student.id", target = "studentId")
-    @Mapping(source = "teacher.id", target = "teacherId")
+//    @Mapping(source = "student.id", target = "studentId")
+//    @Mapping(source = "teacher.id", target = "teacherId")
     CommentDTO commentToCommentDTO(Comment comment);
 //    CommentDTO commentToCommentDTO(Comment comment);
 

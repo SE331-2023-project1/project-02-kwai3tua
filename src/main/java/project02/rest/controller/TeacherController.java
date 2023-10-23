@@ -21,7 +21,7 @@ import java.util.List;
 public class TeacherController {
     final TeacherService teacherService;
     final TeacherRepository teacherRepository;
-    @GetMapping("teachers")
+    @GetMapping("/teachers")
     public ResponseEntity<?> getAllTeachers(@RequestParam(value = "_limit", required = false) Integer perPage,
                                             @RequestParam(value = "_page", required = false) Integer page,
                                             @RequestParam(value = "_filter", required = false) String filter) {
@@ -30,13 +30,16 @@ public class TeacherController {
         List<Teacher> pageOutput;
         pageOutput = teacherRepository.findAll();
         return ResponseEntity.ok(pageOutput.stream().map(LabMapper.INSTANCE::getDetailedTeacherDTO));
+
+
     }
 
-    @GetMapping("teachers/{id}")
-    public ResponseEntity<?> getTeacher(@PathVariable("id") Long Id) {
-        Teacher output = teacherService.getTeacher(Id);
-        if (output != null) {
-            return ResponseEntity.ok(LabMapper.INSTANCE.getTeacherDTO(output));
+    @GetMapping("/teachers/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public ResponseEntity<?> getTeacherById(@PathVariable("id") Long id) {
+        Teacher teacherOpt = teacherService.getTeacher(id);
+        if (teacherOpt != null) {
+            return ResponseEntity.ok(LabMapper.INSTANCE.getTeacherDTO(teacherOpt));
         }else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given id is not found");
         }
@@ -49,12 +52,13 @@ public class TeacherController {
     }
 
     @PutMapping(value = "/teachers/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> updateTeacher(@PathVariable("id") Long id,
                                            @ModelAttribute User user,
                                            @RequestPart("images") MultipartFile imageFile) {
-        User output = teacherService.updateTeacher(id, user, imageFile);
-        if (output != null) {
-            return ResponseEntity.ok(LabMapper.INSTANCE.getUserDTO(output));
+        User updatedUser = teacherService.updateTeacher(id, user, imageFile);
+        if (updatedUser != null) {
+            return ResponseEntity.ok(LabMapper.INSTANCE.getUserDTO(updatedUser));
         }else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given id is not found");
         }

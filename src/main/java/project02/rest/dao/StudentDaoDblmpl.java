@@ -85,7 +85,7 @@ public class StudentDaoDblmpl implements StudentDao {
                         } catch (ServletException e) {
                             throw new RuntimeException(e);
                         }
-                        user.setProfileImg(imageUrl);
+                        user.setImage(imageUrl);
                     }
                     return userRepository.save(user);
                 })
