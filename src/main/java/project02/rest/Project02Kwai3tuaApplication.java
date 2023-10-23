@@ -21,7 +21,10 @@ public class Project02Kwai3tuaApplication {
 			public void addCorsMappings (CorsRegistry registry){
 				registry.addMapping("/**")
 						.allowedOrigins("http://localhost:3000")
-						.exposedHeaders("x-total-count"); //expose x-total-count
+						.exposedHeaders("x-total-count") //expose x-total-count
+						.allowedMethods("GET","POST","PUT","DELETE","HEAD","OPTIONS")
+						.allowCredentials(true)
+						.allowedHeaders("Origin","Authorization","application/json","Content-Type");
 			}
 		};
 	}

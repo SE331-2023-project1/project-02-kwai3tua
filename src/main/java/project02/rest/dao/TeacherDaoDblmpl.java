@@ -16,6 +16,7 @@ import project02.rest.security.user.UserRepository;
 import project02.rest.util.CloudStorageHelper;
 
 import java.io.IOException;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -32,8 +33,13 @@ public class TeacherDaoDblmpl implements TeacherDao {
     }
 
     @Override
-    public Page<Teacher> getTeachers(Integer pageSize, Integer page) {
-        return teacherRepository.findAll(PageRequest.of(page - 1, pageSize));
+    public Teacher save(Teacher teacher) {
+        return teacherRepository.save(teacher);
+    }
+
+    @Override
+    public List<Teacher> getTeachers(Integer pageSize, Integer page) {
+        return teacherRepository.findAll();
     }
 
     @Override
@@ -42,13 +48,8 @@ public class TeacherDaoDblmpl implements TeacherDao {
     }
 
     @Override
-    public Teacher getTeacher(Long Id) {
-        return teacherRepository.findById(Id).orElse(null);
-    }
-
-    @Override
-    public Teacher save(Teacher teacher) {
-        return teacherRepository.save(teacher);
+    public Teacher getTeacher(Long id) {
+        return teacherRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -77,7 +78,7 @@ public class TeacherDaoDblmpl implements TeacherDao {
                     if (imageFile != null && !imageFile.isEmpty()) {
                         String imageUrl = null;
                         try {
-                            imageUrl = cloudStorageHelper.getImageUrl(imageFile, "imageupload-e5081.appspot.com");
+                            imageUrl = cloudStorageHelper.getImageUrl(imageFile, "se-lab-331-imageuplaod.appspot.com");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         } catch (ServletException e) {

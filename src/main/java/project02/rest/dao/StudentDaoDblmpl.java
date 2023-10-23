@@ -37,6 +37,11 @@ public class StudentDaoDblmpl implements StudentDao {
     }
 
     @Override
+    public Page<Student> getStudents(String filter, Pageable page) {
+        return studentRepository.findByUser_FirstnameOrUser_LastnameOrUser_Username(filter,filter,filter, page);
+    }
+
+    @Override
     public Page<Student> findByUser_Firstname(String firstname, Pageable page) {
         return null;
     }

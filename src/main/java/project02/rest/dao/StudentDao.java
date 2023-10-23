@@ -8,10 +8,12 @@ import project02.rest.security.user.User;
 
 public interface StudentDao {
     Integer getStudentSize();
-    Page<Student> getStudents(Integer pageSize, Integer page);
-    Page<Student> findByUser_Firstname(String firstname, Pageable page);
-    Student getStudent(Long studentId);
-
     Student save(Student student);
+    Page<Student> getStudents(Integer pageSize, Integer page);
+    Page<Student> getStudents(String filter, Pageable page);
+
+    Page<Student> findByUser_Firstname(String firstname, Pageable page);
+
+    Student getStudent(Long id);
     User updateStudent(Long id, User updatedUser, MultipartFile imageFile);
 }

@@ -18,11 +18,11 @@ public class Teacher {
     @EqualsAndHashCode.Exclude
     Long id;
     @ElementCollection
-    List<String> profileImg;
+    List<String> images;
     String department;
-    @OneToMany(mappedBy = "teacher") //advisor = teacher
+    @OneToMany(mappedBy = "teacher")
     @Builder.Default
-    List<Student> ownStudent = new ArrayList<>(); //Own Student
+    List<Student> ownStudent = new ArrayList<>();
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;

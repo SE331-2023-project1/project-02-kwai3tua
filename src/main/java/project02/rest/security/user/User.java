@@ -11,6 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import project02.rest.entity.Student;
+import project02.rest.entity.Teacher;
 import project02.rest.security.token.Token;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class User implements UserDetails {
   private String email;
   private String password;
   @Column(length = 500)
-  private String profileImg;
+  private String image;
 
   @Enumerated(EnumType.STRING)
   @ElementCollection
@@ -45,14 +46,18 @@ public class User implements UserDetails {
   @LazyCollection(LazyCollectionOption.FALSE)
   private List<Role> roles = new ArrayList<>();
 
+  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+  private Student student;
+
+  @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+  private Teacher teacher;
+
   @OneToMany(mappedBy = "user")
   private List<Token> tokens;
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return roles.stream().map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toList());
   }
-  @OneToOne(mappedBy = "user")
-  Student student;
 
   @Override
   public String getPassword() {

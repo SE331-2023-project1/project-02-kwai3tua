@@ -7,10 +7,17 @@ import project02.rest.entity.Student;
 import project02.rest.security.user.User;
 
 public interface StudentService {
-    Integer getStudentSize();
+    Integer getStudentsSize();
+
     Page<Student> getStudents(Integer pageSize, Integer page);
-    Page<Student> getStudentByFirstname(String firstname, Pageable pageable);
-    Student getStudent(Long studentId);
+
+    Page<Student> getStudents(String filter, Pageable pageable);
+
+    Student getStudent(Long id);
+
     Student save(Student student);
+
     User updateStudent(Long id, User user, MultipartFile image );
+
+    User findUserByStudentId(Long studentUserId);
 }

@@ -43,14 +43,27 @@ public class CloudStorageHelper {
             int bytesRead = is.read(readBuf);
             os.write(readBuf, 0, bytesRead);
         }
-        //Convert ByteArrayOutputStream into byte[]
         BlobInfo blobInfo = storage.create(BlobInfo.newBuilder(bucketName, fileName)
-                                //Modify access list to allow all users with link to read file
-                        .setAcl(new ArrayList<>(Arrays.asList(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER))))
+                .setAcl(new ArrayList<>(Arrays.asList(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER))))
                 .setContentType(filePart.getContentType()).build(), os.toByteArray());
-        //return the public download link
         return blobInfo.getMediaLink();
     }
+
+    public String getFileUrl(MultipartFile file, final String bucket) throws IOException, ServletException {
+        final String fileName = file.getOriginalFilename();
+        if (fileName != null && !fileName.isEmpty() && fileName.contains(".")) {
+            final String extension = fileName.substring(fileName.lastIndexOf('.')+ 1);
+            String[] allowedExt = { "jpg", "jpeg", "png", "gif" };
+//            for (String s : allowedExt) {
+//                if (extension.equals(s)) {
+            return this.uploadFile(file, bucket);
+//                }
+//            }
+//            throw new ServletException("file must be an image");
+        }
+        return null;
+    }
+
     public String getImageUrl(MultipartFile file, final String bucket) throws IOException, ServletException {
         final String fileName = file.getOriginalFilename();
         if (fileName != null && !fileName.isEmpty() && fileName.contains(".")) {
@@ -64,26 +77,6 @@ public class CloudStorageHelper {
             throw new ServletException("file must be an image");
         }
         return null;
-    }
-
-    public StorageFileDto getStorageFileDto(MultipartFile file, final  String bucket)
-        throws IOException, ServletException{
-        final String fileName = file.getOriginalFilename();
-        //Check extension of file
-        if (fileName != null && !fileName.isEmpty() && fileName.contains(".")) {
-            final  String extensions = fileName.substring(fileName.lastIndexOf(".")+1);
-            String[] allowedExt = { "jpg", "jpeg", "png", "gif" };
-            for (String s : allowedExt){
-                if (extensions.equals(s)){
-                    String urlName = this.uploadFile(file, bucket);
-                    return StorageFileDto.builder()
-                            .name(urlName)
-                            .build();
-                }
-            }
-            throw new ServletException("file must be an image");
-        }
-        return  null;
     }
 }
 

@@ -17,7 +17,7 @@ public class Student {
     @EqualsAndHashCode.Exclude
     Long id;
     @ElementCollection
-    List<String> profileImg;
+    List<String> images;
     String department;
     @ManyToOne
     Teacher teacher;
