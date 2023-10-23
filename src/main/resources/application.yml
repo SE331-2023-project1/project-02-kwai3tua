@@ -1,24 +1,19 @@
 spring:
-  profiles:
-    active:
-      - db
   datasource:
-    url: jdbc:mysql://localhost:3306/project02db?createDatabaseIfNotExist=true&autoReconnect=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3307/selabdb?createDatabaseIfNotExist=true&autoReconnect=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: password
   jpa:
     hibernate:
-      ddl-auto: create
-  servlet:
-    multipart:
-      max-file-size: 10MB
-
+      ddl-auto: create-drop
+  profiles:
+    active:
+      - db
 application:
   security:
     jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
       expiration: 86400000 # 86400000 # a day
-      secret-key: 2cb0532d81378bcda76d981cfafb120b54f4e2efbaada4e8d8a52063907658982865924a0913a832b885bfbb7d750b3c7af4478625b679e2731453b7edb0a083
       refresh-token:
-        expiration: 604800000 # 7days
-
+        expiration: 604800000 # 7 days
